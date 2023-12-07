@@ -1,0 +1,3 @@
+dependency_overrides:
+  cropper_service:
+    path: "../cropper_service/"

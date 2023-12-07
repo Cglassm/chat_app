@@ -17,6 +17,8 @@ dependencies:
   flutter_localizations:
     sdk: flutter
   intl: ^0.18.0
+  media_picker:
+    path: ./packages/media_picker
 
 dev_dependencies:
   bloc_test: ^9.1.4

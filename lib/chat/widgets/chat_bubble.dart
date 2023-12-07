@@ -31,10 +31,16 @@ class ChatBubble extends StatelessWidget {
         crossAxisAlignment:
             isUser ? CrossAxisAlignment.end : CrossAxisAlignment.start,
         children: [
-          Text(
-            chatMessage.message,
-            style: theme.textTheme.bodyMedium?.copyWith(color: CHColors.white),
-          ),
+          if (chatMessage.image != null)
+            ImageContainer(
+              image: chatMessage.image,
+            )
+          else
+            Text(
+              chatMessage.message,
+              style:
+                  theme.textTheme.bodyMedium?.copyWith(color: CHColors.white),
+            ),
           Text(
             getFormattedDate(
               chatMessage.dateTime,

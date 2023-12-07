@@ -1,12 +1,14 @@
+import 'package:flutter/services.dart';
+
 class ChatMessage {
   ChatMessage({
     required this.message,
     required this.dateTime,
     required this.isUser,
+    this.image,
   });
   final String message;
   final DateTime dateTime;
-
-  /// true si es mensaje del usuario, false si es del bot
   final bool isUser;
+  final Uint8List? image;
 }

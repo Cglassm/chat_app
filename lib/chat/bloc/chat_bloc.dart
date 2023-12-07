@@ -2,16 +2,23 @@ import 'dart:async';
 
 import 'package:chat_app/chat/chat_messsage.dart';
 import 'package:equatable/equatable.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:media_picker/media_picker.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  ChatBloc() : super(ChatState.initial()) {
+  ChatBloc({required MediaPicker mediaPicker})
+      : _mediaPicker = mediaPicker,
+        super(ChatState.initial()) {
     on<ChatStarted>(_onChatStarted);
     on<SendMessage>(_onSendMessage);
+    on<PhotoMessageAdded>(_onPhotoMessageAdded);
   }
+
+  final MediaPicker _mediaPicker;
 
   Stream<ChatState> mapEventToState(ChatEvent event) async* {
     // if (event is SendMessageEvent) {
@@ -44,27 +51,56 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     Emitter<ChatState> emit,
   ) async {
     emit(state.copyWith(status: ChatStatus.loading));
-    final newMessages = List<ChatMessage>.from(state.messages)
-      ..add(
+    await Future<void>.delayed(const Duration(seconds: 3));
+    final newMessages = List<ChatMessage>.from(state.messages);
+
+    if (state.image != null) {
+      newMessages.add(
+        ChatMessage(
+          message: '',
+          image: state.image,
+          dateTime: DateTime.now(),
+          isUser: true,
+        ),
+      );
+    } else {
+      newMessages.add(
         ChatMessage(
           message: event.message,
           dateTime: DateTime.now(),
           isUser: true,
         ),
-      )
-      ..add(
-        ChatMessage(
-          message: 'Recibí tu mensaje',
-          dateTime: DateTime.now(),
-          isUser: false,
-        ),
       );
+    }
 
-    emit(
-      state.copyWith(
-        status: ChatStatus.loaded,
-        messages: newMessages,
+    newMessages.add(
+      ChatMessage(
+        message: 'Recibí tu mensaje',
+        dateTime: DateTime.now(),
+        isUser: false,
       ),
     );
+
+    emit(state.copyWith(status: ChatStatus.messageSent, messages: newMessages));
+  }
+
+  Future<void> _onPhotoMessageAdded(
+    PhotoMessageAdded event,
+    Emitter<ChatState> emit,
+  ) async {
+    try {
+      final image = await _mediaPicker.pickImage(
+        source: event.source,
+      );
+      if (image == null) return;
+      emit(
+        state.copyWith(
+          image: image,
+          status: ChatStatus.loaded,
+        ),
+      );
+    } catch (e) {
+      emit(state.copyWith(status: ChatStatus.error));
+    }
   }
 }

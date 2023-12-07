@@ -73,7 +73,7 @@ class _ChatBodyState extends State<_ChatBody> {
       children: [
         if (widget.messages.isNotEmpty)
           Expanded(
-            child: Container(
+            child: ColoredBox(
               color: Theme.of(context).colorScheme.surfaceVariant,
               child: ListView.builder(
                 controller: scrollController,
