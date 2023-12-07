@@ -20,7 +20,7 @@ class ChatView extends StatelessWidget {
       },
       child: Scaffold(
         backgroundColor: Theme.of(context).colorScheme.background,
-        appBar: CHAppBar.textAppBar('Chat'),
+        appBar: CHAppBar.textAppBar('Chat App'),
         body: _ChatBody(
           messages: messages,
         ),
