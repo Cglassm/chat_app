@@ -3,7 +3,7 @@ import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:flutter/services.dart';
 
 class CHTheme {
-  /// Light Theme example based on Material 2 Design.
+  /// Light Theme .
   ThemeData get lightTheme {
     return ThemeData(
       primaryColor: CHColors.mediumViolet,
@@ -11,16 +11,13 @@ class CHTheme {
       scaffoldBackgroundColor: _backgroundColor,
       iconTheme: _lightIconTheme,
       appBarTheme: _lightAppBarTheme,
-      dividerTheme: _dividerTheme,
       textTheme: _lightTextTheme,
       buttonTheme: _buttonTheme,
       splashColor: CHColors.transparent,
-      // elevatedButtonTheme: _elevatedButtonTheme,
       textButtonTheme: _textButtonTheme,
       colorScheme: _lightColorScheme,
       bottomSheetTheme: _lightBottomSheetTheme,
       listTileTheme: _listTileTheme,
-      // switchTheme: _switchTheme,
       progressIndicatorTheme: _progressIndicatorTheme,
       tabBarTheme: _tabBarTheme,
       bottomNavigationBarTheme: _bottomAppBarTheme,
@@ -30,7 +27,7 @@ class CHTheme {
     );
   }
 
-  /// Dark Theme example based on Material 2 Design.
+  /// Dark Theme.
   ThemeData get darkTheme => lightTheme.copyWith(
         chipTheme: _darkChipTheme,
         brightness: Brightness.dark,
@@ -85,6 +82,7 @@ class CHTheme {
         onSecondary: CHColors.lightGrey,
         secondaryContainer: CHColors.liver,
         onSecondaryContainer: CHColors.brightGrey,
+        surfaceVariant: CHColors.grey,
       );
 
   /// Returns the correct background color based on the current theme.
@@ -130,17 +128,6 @@ class CHTheme {
   IconThemeData get _darkIconTheme {
     return const IconThemeData(
       color: CHColors.white,
-    );
-  }
-
-  /// Returns the correct [DividerThemeData] based on the current theme.
-  DividerThemeData get _dividerTheme {
-    return const DividerThemeData(
-      color: CHColors.outlineLight,
-      space: CHSpacing.lg,
-      thickness: CHSpacing.xxxs,
-      indent: CHSpacing.lg,
-      endIndent: CHSpacing.lg,
     );
   }
 

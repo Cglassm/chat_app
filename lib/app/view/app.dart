@@ -1,3 +1,4 @@
+import 'package:chat_app/app_theme/app_theme.dart';
 import 'package:chat_app/chat/chat.dart';
 import 'package:chat_app/l10n/l10n.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
@@ -21,25 +22,45 @@ class App extends StatelessWidget {
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
     final mediaQueryTextScaleFactor = MediaQuery.textScaleFactorOf(context);
+    final brightness = MediaQuery.of(context).platformBrightness;
+    final isDarkMode = brightness == Brightness.dark;
 
     return MultiRepositoryProvider(
       providers: [
         RepositoryProvider.value(value: _mediaPicker),
         RepositoryProvider.value(value: _chatRepository),
       ],
-      child: MediaQuery(
-        data: mediaQueryTextScaleFactor > 1.5
-            ? mediaQuery.copyWith(
-                textScaleFactor: 1.5,
-              )
-            : mediaQuery,
-        child: MaterialApp(
-          theme: CHTheme().lightTheme,
-          localizationsDelegates: AppLocalizations.localizationsDelegates,
-          supportedLocales: AppLocalizations.supportedLocales,
-          home: const ChatPage(),
+      child: BlocProvider(
+        create: (context) => AppThemeBloc(
+          appTheme: isDarkMode ? AppTheme.dark : AppTheme.light,
+        ),
+        child: MediaQuery(
+          data: mediaQueryTextScaleFactor > 1.5
+              ? mediaQuery.copyWith(
+                  textScaleFactor: 1.5,
+                )
+              : mediaQuery,
+          child: const AppView(),
         ),
       ),
+    );
+  }
+}
+
+class AppView extends StatelessWidget {
+  const AppView({
+    super.key,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final appTheme = context.select((AppThemeBloc bloc) => bloc.state.theme);
+
+    return MaterialApp(
+      theme: appTheme.theme,
+      localizationsDelegates: AppLocalizations.localizationsDelegates,
+      supportedLocales: AppLocalizations.supportedLocales,
+      home: const ChatPage(),
     );
   }
 }

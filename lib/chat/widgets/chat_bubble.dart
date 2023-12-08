@@ -36,8 +36,8 @@ class ChatBubble extends StatelessWidget {
           else
             Text(
               chatMessage.message,
-              style:
-                  theme.textTheme.bodyMedium?.copyWith(color: CHColors.white),
+              style: theme.textTheme.bodyMedium
+                  ?.copyWith(color: theme.colorScheme.background),
               textScaleFactor: getTextScaleFactor(
                 context: context,
                 dataTextFactorLimit: 2,
@@ -65,7 +65,8 @@ class _MessageDateTime extends StatelessWidget {
       getFormattedDate(
         chatMessage.dateTime,
       ),
-      style: theme.textTheme.bodySmall?.copyWith(color: CHColors.white),
+      style: theme.textTheme.bodySmall
+          ?.copyWith(color: theme.colorScheme.background),
       textScaleFactor: getTextScaleFactor(
         context: context,
         dataTextFactorLimit: 2,

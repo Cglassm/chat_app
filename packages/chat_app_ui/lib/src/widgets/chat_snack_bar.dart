@@ -48,9 +48,9 @@ class CHSnackBar extends SnackBar {
           key: key,
           content: Text(
             text,
-            style: CHTextStyle.labelSmall.copyWith(
+            style: CHTextStyle.labelLarge.copyWith(
               color: CHColors.black,
-              fontWeight: CHFontWeight.regular,
+              fontWeight: CHFontWeight.bold,
             ),
             textAlign: TextAlign.center,
           ),

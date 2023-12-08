@@ -90,13 +90,16 @@ class CHTextField extends StatelessWidget {
         readOnly: readOnly,
         autofillHints: autoFillHints,
         cursorColor: theme.colorScheme.onBackground,
-        style: theme.textTheme.labelLarge?.copyWith(
+        style: theme.textTheme.bodySmall?.copyWith(
           fontWeight: FontWeight.w500,
+          fontSize: 16,
         ),
         onFieldSubmitted: onSubmitted,
         decoration: InputDecoration(
           hintText: hintText,
-          hintStyle: theme.textTheme.labelLarge,
+          hintStyle: theme.textTheme.labelLarge?.copyWith(
+            fontSize: 16,
+          ),
           errorText: errorText,
           prefixIcon: prefix,
           suffixIcon: suffix,
