@@ -1,1 +1,1 @@
-const String kTermsOfServiceUrl = 'https://zapia.com/es/terms';
+const String kTermsAndConditionsUrl = 'https://zapia.com/es/terms';

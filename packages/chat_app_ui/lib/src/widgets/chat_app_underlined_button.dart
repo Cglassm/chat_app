@@ -23,7 +23,7 @@ class CHUnderlinedButton extends StatelessWidget {
       },
       child: Container(
         color: Colors.transparent,
-        padding: const EdgeInsets.all(CHSpacing.sm),
+        padding: const EdgeInsets.all(CHSpacing.mlg),
         child: Text(
           text,
           textAlign: TextAlign.center,
