@@ -15,7 +15,6 @@ class AppBarPage extends StatefulWidget {
 class _AppBarPage extends State<AppBarPage> {
   @override
   Widget build(BuildContext context) {
-    const contentSpacing = CHSpacing.sm;
     final appBarList = [
       CHAppBar.textAppBar('Chat'),
     ];

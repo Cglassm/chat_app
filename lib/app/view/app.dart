@@ -1,7 +1,6 @@
 import 'package:chat_app/app_theme/app_theme.dart';
 import 'package:chat_app/chat/chat.dart';
 import 'package:chat_app/l10n/l10n.dart';
-import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';

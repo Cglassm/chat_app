@@ -58,7 +58,7 @@ class _AudioIconButton extends StatelessWidget {
         color: CHColors.richViolet,
       ),
       onPressed: () {
-        // TODO: Implement voice message here
+        // TODO(future): Implement voice message here
         ScaffoldMessenger.of(context).showSnackBar(
           CHSnackBar.error(
             text: 'Voice message is not implemented yet but will soon!',

@@ -3,22 +3,23 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:chat_app_ui/src/generated/assets.gen.dart';
 
 abstract class CHIcon {
-    ///Returns the back icon
+  /// Returns the back icon with an optional size and color.
   SvgPicture backIcon({double? size, Color? color}) {
-    return Assets.icons.backIcon.svg(
+    return SvgPicture.asset(
+      Assets.icons.backIcon.path,
       color: color,
       height: size ?? 14,
       width: size ?? 14,
     );
   }
 
-  ///Returns the email outline icon
+  /// Returns the email outline icon with an optional size and color.
   SvgPicture emailOutline({double? size, Color? color}) {
-    return Assets.icons.emailOutline.svg(
+    return SvgPicture.asset(
+      Assets.icons.emailOutline.path,
       color: color,
       height: size ?? 14,
       width: size ?? 14,
     );
   }
-
 }
