@@ -61,6 +61,9 @@ abstract class CHColors {
   /// The red wine color.
   static const Color redWine = Color(0xFF9A031E);
 
+  /// The light red wine color.
+  static const Color lightRedWine = Color(0xFFFFD9DB);
+
   /// The medium emphasis primary color.
   static const Color mediumEmphasisPrimary = Color(0xBDFFFFFF);
 
@@ -72,4 +75,7 @@ abstract class CHColors {
 
   /// The light outline color.
   static const Color outlineLight = Color(0x33000000);
+
+  /// Success
+  static const Color success = Color(0xFF58D98D);
 }

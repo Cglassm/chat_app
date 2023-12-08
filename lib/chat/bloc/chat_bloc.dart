@@ -1,6 +1,7 @@
 import 'dart:async';
 
-import 'package:chat_app/chat/chat_messsage.dart';
+import 'package:chat_repository/chat_repository.dart';
+
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -10,8 +11,11 @@ part 'chat_event.dart';
 part 'chat_state.dart';
 
 class ChatBloc extends Bloc<ChatEvent, ChatState> {
-  ChatBloc({required MediaPicker mediaPicker})
-      : _mediaPicker = mediaPicker,
+  ChatBloc({
+    required MediaPicker mediaPicker,
+    required ChatRepository chatRepository,
+  })  : _mediaPicker = mediaPicker,
+        _chatRepository = chatRepository,
         super(ChatState.initial()) {
     on<ChatStarted>(_onChatStarted);
     on<SendMessage>(_onSendMessage);
@@ -19,13 +23,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   }
 
   final MediaPicker _mediaPicker;
-
-  Stream<ChatState> mapEventToState(ChatEvent event) async* {
-    // if (event is SendMessageEvent) {
-    //   _messages.add(event.message);
-    //   yield ChatMessagesUpdatedState(List.from(_messages));
-    // }
-  }
+  final ChatRepository _chatRepository;
 
   Future<void> _onChatStarted(
     ChatStarted event,
@@ -33,8 +31,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
   ) async {
     emit(state.copyWith(status: ChatStatus.loading));
     try {
-      final messages = <ChatMessage>[];
-      // final messages = await _chatRepository.getMessages();
+      final messages = await _chatRepository.readMessages();
       emit(
         state.copyWith(
           status: ChatStatus.loaded,
@@ -80,6 +77,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         isUser: false,
       ),
     );
+
+    await _chatRepository.saveMessages(newMessages);
 
     emit(state.copyWith(status: ChatStatus.messageSent, messages: newMessages));
   }

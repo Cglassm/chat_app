@@ -1,6 +1,6 @@
 import 'package:chat_app/chat/chat.dart';
-import 'package:chat_app/chat/chat_messsage.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
+import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
@@ -14,12 +14,14 @@ class ChatView extends StatelessWidget {
     return BlocListener<ChatBloc, ChatState>(
       listener: (context, state) {
         if (state.status == ChatStatus.error) {
-          // Handle Error
-          Navigator.of(context).pop();
+          ScaffoldMessenger.of(context).showSnackBar(
+            CHSnackBar.error(
+              text: 'Error loading messages',
+            ),
+          );
         }
       },
       child: Scaffold(
-        backgroundColor: Theme.of(context).colorScheme.background,
         appBar: CHAppBar.textAppBar('Chat App'),
         body: _ChatBody(
           messages: messages,
@@ -91,23 +93,9 @@ class _ChatBodyState extends State<_ChatBody> {
             ),
           )
         else
-          const _EmptyChatBody(),
+          const EmptyChatBody(),
         ChatInputBar(),
       ],
-    );
-  }
-}
-
-class _EmptyChatBody extends StatelessWidget {
-  const _EmptyChatBody();
-
-  @override
-  Widget build(BuildContext context) {
-    return Center(
-      child: Text(
-        'No messages yet',
-        style: Theme.of(context).textTheme.bodyMedium,
-      ),
     );
   }
 }

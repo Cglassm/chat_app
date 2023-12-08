@@ -1,5 +1,3 @@
-import 'dart:typed_data';
-
 import 'package:chat_app/chat/chat.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:flutter/material.dart';
@@ -10,15 +8,6 @@ class ChatInputBar extends StatelessWidget {
   ChatInputBar({super.key});
 
   final TextEditingController _textEditingController = TextEditingController();
-
-  void _pickAndSendImage(
-    BuildContext context,
-    ImageSource source,
-  ) {
-    context.read<ChatBloc>().add(
-          PhotoMessageAdded(source: source),
-        );
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -32,22 +21,11 @@ class ChatInputBar extends StatelessWidget {
       padding: const EdgeInsets.all(CHSpacing.md),
       child: Row(
         children: [
-          IconButton(
-            icon: const Icon(Icons.camera, color: CHColors.richViolet),
-            onPressed: () {
-              showModalBottomSheet<void>(
-                context: context,
-                builder: (_) => SelectMediaFromBottomSheet(
-                  pickPictureFrom: (source) {
-                    _pickAndSendImage(context, source);
-                  },
-                ),
-              );
-            },
-          ),
+          const _ImageIconButton(),
+          const _AudioIconButton(),
           if (stateImage != null && !status.isMessageSent)
             Expanded(
-              child: _ImageField(image: stateImage),
+              child: ChatImageField(image: stateImage),
             )
           else
             Expanded(
@@ -59,7 +37,7 @@ class ChatInputBar extends StatelessWidget {
           if (status.isLoading)
             const CHCircularProgressIndicator()
           else
-            _SendMessageButton(
+            SendMessageIconButton(
               textEditingController: _textEditingController,
               image: stateImage,
             ),
@@ -69,49 +47,54 @@ class ChatInputBar extends StatelessWidget {
   }
 }
 
-class _SendMessageButton extends StatelessWidget {
-  const _SendMessageButton({
-    required TextEditingController textEditingController,
-    required this.image,
-  }) : _textEditingController = textEditingController;
-
-  final TextEditingController _textEditingController;
-  final Uint8List? image;
+class _AudioIconButton extends StatelessWidget {
+  const _AudioIconButton();
 
   @override
   Widget build(BuildContext context) {
     return IconButton(
-      icon: const Icon(Icons.send, color: CHColors.richViolet),
+      icon: const Icon(
+        Icons.mic,
+        color: CHColors.richViolet,
+      ),
       onPressed: () {
-        if (_textEditingController.text.isNotEmpty) {
-          context.read<ChatBloc>().add(
-                SendMessage(message: _textEditingController.text),
-              );
-          _textEditingController.clear();
-        }
-        if (image != null) {
-          context.read<ChatBloc>().add(
-                const SendMessage(message: ''),
-              );
-        }
+        // TODO: Implement voice message here
+        ScaffoldMessenger.of(context).showSnackBar(
+          CHSnackBar.error(
+            text: 'Voice message is not implemented yet but will soon!',
+          ),
+        );
       },
     );
   }
 }
 
-class _ImageField extends StatelessWidget {
-  const _ImageField({
-    required this.image,
-  });
+class _ImageIconButton extends StatelessWidget {
+  const _ImageIconButton();
 
-  final Uint8List? image;
+  void _pickAndSendImage(
+    BuildContext context,
+    ImageSource source,
+  ) {
+    context.read<ChatBloc>().add(
+          PhotoMessageAdded(source: source),
+        );
+  }
 
   @override
   Widget build(BuildContext context) {
-    if (image != null) {
-      return ImageContainer(image: image, color: CHColors.brightGrey);
-    } else {
-      return const SizedBox.shrink();
-    }
+    return IconButton(
+      icon: const Icon(Icons.camera, color: CHColors.richViolet),
+      onPressed: () {
+        showModalBottomSheet<void>(
+          context: context,
+          builder: (_) => SelectMediaFromBottomSheet(
+            pickPictureFrom: (source) {
+              _pickAndSendImage(context, source);
+            },
+          ),
+        );
+      },
+    );
   }
 }

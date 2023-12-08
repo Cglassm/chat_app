@@ -1,6 +1,6 @@
-import 'package:chat_app/chat/chat_messsage.dart';
 import 'package:chat_app/utils/utils.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
+import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
 
 class ChatBubble extends StatelessWidget {
@@ -14,11 +14,9 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isUser = chatMessage.isUser;
+
     return Container(
-      padding: const EdgeInsets.symmetric(
-        horizontal: CHSpacing.md,
-        vertical: CHSpacing.sm,
-      ),
+      padding: const EdgeInsets.all(CHSpacing.md),
       margin: const EdgeInsets.symmetric(
         vertical: CHSpacing.xs,
         horizontal: CHSpacing.sm,
@@ -40,14 +38,37 @@ class ChatBubble extends StatelessWidget {
               chatMessage.message,
               style:
                   theme.textTheme.bodyMedium?.copyWith(color: CHColors.white),
+              textScaleFactor: getTextScaleFactor(
+                context: context,
+                dataTextFactorLimit: 2,
+              ),
             ),
-          Text(
-            getFormattedDate(
-              chatMessage.dateTime,
-            ),
-            style: theme.textTheme.bodySmall?.copyWith(color: CHColors.white),
-          ),
+          _MessageDateTime(chatMessage: chatMessage, theme: theme),
         ],
+      ),
+    );
+  }
+}
+
+class _MessageDateTime extends StatelessWidget {
+  const _MessageDateTime({
+    required this.chatMessage,
+    required this.theme,
+  });
+
+  final ChatMessage chatMessage;
+  final ThemeData theme;
+
+  @override
+  Widget build(BuildContext context) {
+    return Text(
+      getFormattedDate(
+        chatMessage.dateTime,
+      ),
+      style: theme.textTheme.bodySmall?.copyWith(color: CHColors.white),
+      textScaleFactor: getTextScaleFactor(
+        context: context,
+        dataTextFactorLimit: 2,
       ),
     );
   }
