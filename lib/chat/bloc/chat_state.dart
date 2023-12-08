@@ -5,13 +5,15 @@ enum ChatStatus {
   loading,
   loaded,
   error,
-  messageSent;
+  messageSent,
+  messageDeleted;
 
   bool get isInitial => this == ChatStatus.initial;
   bool get isLoading => this == ChatStatus.loading;
   bool get isLoaded => this == ChatStatus.loaded;
   bool get isError => this == ChatStatus.error;
   bool get isMessageSent => this == ChatStatus.messageSent;
+  bool get isMessageDeleted => this == ChatStatus.messageDeleted;
 }
 
 final class ChatState extends Equatable {
@@ -35,11 +37,12 @@ final class ChatState extends Equatable {
     ChatStatus? status,
     List<ChatMessage>? messages,
     Uint8List? image,
+    bool resetImage = false,
   }) {
     return ChatState(
       status: status ?? this.status,
       messages: messages ?? this.messages,
-      image: image ?? this.image,
+      image: resetImage ? null : image ?? this.image,
     );
   }
 

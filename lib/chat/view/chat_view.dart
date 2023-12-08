@@ -1,4 +1,6 @@
+import 'package:chat_app/app/app.dart';
 import 'package:chat_app/chat/chat.dart';
+import 'package:chat_app/utils/launch_url.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
@@ -13,16 +15,35 @@ class ChatView extends StatelessWidget {
 
     return BlocListener<ChatBloc, ChatState>(
       listener: (context, state) {
-        if (state.status == ChatStatus.error) {
+        if (state.status.isError) {
           ScaffoldMessenger.of(context).showSnackBar(
             CHSnackBar.error(
               text: 'Error loading messages',
             ),
           );
         }
+        if (state.status.isMessageDeleted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            CHSnackBar.success(
+              text: 'Message deleted',
+            ),
+          );
+        }
       },
       child: Scaffold(
-        appBar: CHAppBar.textAppBar('Chat App'),
+        appBar: CHAppBar.textAppBar(
+          'Chat App',
+          centerTitle: false,
+          actions: [
+            CHUnderlinedButton(
+              onPressed: () {
+                // TODO(carol): add support mail
+                launchURL(kTermsAndConditionsUrl);
+              },
+              text: 'terms & conditions',
+            ),
+          ],
+        ),
         body: _ChatBody(
           messages: messages,
         ),

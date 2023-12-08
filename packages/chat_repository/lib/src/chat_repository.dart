@@ -66,4 +66,23 @@ class ChatRepository {
       throw ReadMessagesException(e, s);
     }
   }
+
+  /// Deletes a message from local storage.
+  ///
+  /// Reads the messages from the file, filters the messages to remove the message
+  Future<void> deleteMessage(String messageId) async {
+    try {
+      final file = await _localFile;
+      final contents = await file.readAsString();
+      final List<dynamic> messagesList = jsonDecode(contents);
+
+      final updatedMessagesList =
+          messagesList.where((message) => message['id'] != messageId).toList();
+
+      final messagesJson = jsonEncode(updatedMessagesList);
+      await file.writeAsString(messagesJson);
+    } catch (e, s) {
+      throw DeleteMessageException(e, s);
+    }
+  }
 }

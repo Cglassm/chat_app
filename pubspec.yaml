@@ -23,6 +23,8 @@ dependencies:
   media_picker:
     path: ./packages/media_picker
   path_provider: ^2.1.1
+  url_launcher: ^6.2.2
+  uuid: ^4.2.1
 
 dev_dependencies:
   bloc_test: ^9.1.4

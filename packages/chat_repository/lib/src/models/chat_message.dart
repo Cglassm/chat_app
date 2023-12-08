@@ -12,11 +12,15 @@ class ChatMessage {
   /// Requires the parameters [message], [dateTime], and [isUser].
   /// The parameter [image] is optional.
   ChatMessage({
+    required this.id,
     required this.message,
     required this.dateTime,
     required this.isUser,
     this.image,
   });
+
+  /// The id of the message.
+  final String id;
 
   /// The content of the message.
   final String message;
@@ -36,6 +40,7 @@ class ChatMessage {
   /// that can be easily serialized and deserialized.
   Map<String, dynamic> toJson() {
     return {
+      'id': id,
       'message': message,
       'dateTime': dateTime.toIso8601String(),
       'isUser': isUser,
@@ -49,6 +54,7 @@ class ChatMessage {
   /// to a `DateTime` object.
   static ChatMessage fromJson(Map<String, dynamic> json) {
     return ChatMessage(
+      id: json['id'],
       message: json['message'],
       dateTime: DateTime.parse(json['dateTime']),
       isUser: json['isUser'],

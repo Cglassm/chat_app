@@ -17,6 +17,9 @@ abstract class CHSpacing {
   /// md spacing value (12pt)
   static const double md = 0.75 * spaceUnit;
 
+  /// mlg spacing value (14pt)
+  static const double mlg = 0.875 * spaceUnit;
+
   /// lg spacing value (16pt)
   static const double lg = spaceUnit;
 
@@ -38,8 +41,17 @@ abstract class CHSpacing {
   /// s20
   static const double s20 = 20;
 
+  /// s40
+  static const double s40 = 40;
+
+  /// s52
+  static const double s52 = 52;
+
   /// s70
   static const double s70 = 70;
+
+  /// s110
+  static const double s110 = 110;
 
   /// s150
   static const double s150 = 150;
