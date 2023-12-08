@@ -13,16 +13,34 @@ class ChatView extends StatelessWidget {
 
     return BlocListener<ChatBloc, ChatState>(
       listener: (context, state) {
-        if (state.status == ChatStatus.error) {
+        if (state.status.isError) {
           ScaffoldMessenger.of(context).showSnackBar(
             CHSnackBar.error(
               text: 'Error loading messages',
             ),
           );
         }
+        if (state.status.isMessageDeleted) {
+          ScaffoldMessenger.of(context).showSnackBar(
+            CHSnackBar.success(
+              text: 'Message deleted',
+            ),
+          );
+        }
       },
       child: Scaffold(
-        appBar: CHAppBar.textAppBar('Chat App'),
+        appBar: CHAppBar.textAppBar(
+          'Chat App',
+          centerTitle: false,
+          actions: [
+            CHUnderlinedButton(
+              onPressed: () {
+                // TODO(carol); add support mail
+              },
+              text: 'support',
+            ),
+          ],
+        ),
         body: _ChatBody(
           messages: messages,
         ),

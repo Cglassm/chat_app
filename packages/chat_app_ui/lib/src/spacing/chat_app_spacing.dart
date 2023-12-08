@@ -38,8 +38,17 @@ abstract class CHSpacing {
   /// s20
   static const double s20 = 20;
 
+  /// s40
+  static const double s40 = 40;
+
+  /// s52
+  static const double s52 = 52;
+
   /// s70
   static const double s70 = 70;
+
+  /// s110
+  static const double s110 = 110;
 
   /// s150
   static const double s150 = 150;

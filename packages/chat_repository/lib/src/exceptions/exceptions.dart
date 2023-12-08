@@ -47,3 +47,17 @@ class SaveMessagesException extends ChatException {
           stackTrace: stackTrace,
         );
 }
+
+/// {@template delete_message_exception}
+/// Thrown when an exception occurs while deleting messages.
+/// {@endtemplate}
+class DeleteMessageException extends ChatException {
+  /// {@macro delete_messages_exception}
+  const DeleteMessageException(
+    Object error,
+    StackTrace stackTrace,
+  ) : super(
+          error: error,
+          stackTrace: stackTrace,
+        );
+}

@@ -15,7 +15,7 @@ class CHSnackBar extends SnackBar {
           key: key,
           content: Text(
             text,
-            style: CHTextStyle.labelSmall.copyWith(color: CHColors.black),
+            style: CHTextStyle.labelLarge.copyWith(color: CHColors.black),
           ),
           duration: Duration(seconds: duration ?? 2),
           behavior: SnackBarBehavior.floating,
@@ -30,8 +30,10 @@ class CHSnackBar extends SnackBar {
           elevation: elevation,
           width: width,
           onVisible: onVisible,
-          margin: const EdgeInsets.symmetric(
-            horizontal: CHSpacing.xlg,
+          margin: const EdgeInsets.only(
+            left: CHSpacing.xlg,
+            right: CHSpacing.xlg,
+            bottom: CHSpacing.xlg,
           ),
         );
 

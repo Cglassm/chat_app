@@ -34,3 +34,11 @@ class PhotoMessageAdded extends ChatEvent {
   @override
   List<Object?> get props => [source];
 }
+
+class DeleteMessage extends ChatEvent {
+  const DeleteMessage({required this.messageId});
+  final String messageId;
+
+  @override
+  List<Object?> get props => [messageId];
+}

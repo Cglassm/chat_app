@@ -6,6 +6,7 @@ import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:media_picker/media_picker.dart';
+import 'package:uuid/uuid.dart';
 
 part 'chat_event.dart';
 part 'chat_state.dart';
@@ -20,6 +21,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<ChatStarted>(_onChatStarted);
     on<SendMessage>(_onSendMessage);
     on<PhotoMessageAdded>(_onPhotoMessageAdded);
+    on<DeleteMessage>(_onDeleteMessage);
   }
 
   final MediaPicker _mediaPicker;
@@ -50,6 +52,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     emit(state.copyWith(status: ChatStatus.loading));
     await Future<void>.delayed(const Duration(seconds: 3));
     final newMessages = List<ChatMessage>.from(state.messages);
+    final userMessageId = const Uuid().v4();
+    final botResponseId = const Uuid().v4();
 
     if (state.image != null) {
       newMessages.add(
@@ -58,6 +62,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           image: state.image,
           dateTime: DateTime.now(),
           isUser: true,
+          id: userMessageId,
         ),
       );
     } else {
@@ -66,6 +71,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
           message: event.message,
           dateTime: DateTime.now(),
           isUser: true,
+          id: userMessageId,
         ),
       );
     }
@@ -75,12 +81,19 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         message: 'Recibí tu mensaje',
         dateTime: DateTime.now(),
         isUser: false,
+        id: botResponseId,
       ),
     );
 
     await _chatRepository.saveMessages(newMessages);
 
-    emit(state.copyWith(status: ChatStatus.messageSent, messages: newMessages));
+    emit(
+      state.copyWith(
+        status: ChatStatus.messageSent,
+        messages: newMessages,
+        resetImage: state.image != null,
+      ),
+    );
   }
 
   Future<void> _onPhotoMessageAdded(
@@ -99,6 +112,25 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         ),
       );
     } catch (e) {
+      emit(state.copyWith(status: ChatStatus.error));
+    }
+  }
+
+  Future<void> _onDeleteMessage(
+    DeleteMessage event,
+    Emitter<ChatState> emit,
+  ) async {
+    try {
+      await _chatRepository.deleteMessage(event.messageId);
+      final updatedMessages =
+          state.messages.where((m) => m.id != event.messageId).toList();
+      emit(
+        state.copyWith(
+          status: ChatStatus.messageDeleted,
+          messages: updatedMessages,
+        ),
+      );
+    } catch (_) {
       emit(state.copyWith(status: ChatStatus.error));
     }
   }
