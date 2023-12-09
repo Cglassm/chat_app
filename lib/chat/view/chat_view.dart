@@ -1,6 +1,4 @@
-import 'package:chat_app/app/app.dart';
 import 'package:chat_app/chat/chat.dart';
-import 'package:chat_app/utils/launch_url.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
