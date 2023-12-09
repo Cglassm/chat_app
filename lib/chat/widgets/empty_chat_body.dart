@@ -1,3 +1,4 @@
+import 'package:chat_app/l10n/l10n.dart';
 import 'package:flutter/material.dart';
 
 class EmptyChatBody extends StatelessWidget {
@@ -7,7 +8,7 @@ class EmptyChatBody extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: Text(
-        'No messages yet start chatting now!',
+        context.l10n.noMessagesText,
         style: Theme.of(context).textTheme.bodyMedium,
         textAlign: TextAlign.center,
       ),

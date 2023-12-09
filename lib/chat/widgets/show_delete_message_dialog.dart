@@ -1,3 +1,4 @@
+import 'package:chat_app/l10n/l10n.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:flutter/material.dart';
 
@@ -10,6 +11,7 @@ Future<T?> showDeleteDialog<T>(
   bool barrierDismissible = false,
 }) {
   final theme = Theme.of(context);
+  final l10n = context.l10n;
 
   return showDialog<T>(
     context: context,
@@ -25,7 +27,7 @@ Future<T?> showDeleteDialog<T>(
             Navigator.pop(ctx);
           },
           child: Text(
-            'Cancel',
+            l10n.cancelButtonText,
             style: theme.textTheme.headlineSmall!.copyWith(
               fontWeight: CHFontWeight.semiBold,
               decoration: TextDecoration.underline,
@@ -46,7 +48,7 @@ Future<T?> showDeleteDialog<T>(
                 onTapDelete();
                 Navigator.pop(ctx);
               },
-              text: 'Delete',
+              text: l10n.deleteButtonText,
               textColor: CHColors.white,
               backgroundColor: CHColors.black,
               borderColor: CHColors.black,

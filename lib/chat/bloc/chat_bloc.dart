@@ -78,7 +78,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
     newMessages.add(
       ChatMessage(
-        message: 'Recibí tu mensaje',
+        message: 'Message received!',
         dateTime: DateTime.now(),
         isUser: false,
         id: botResponseId,
