@@ -5,7 +5,6 @@ class CHOutlinedButton extends StatelessWidget {
   const CHOutlinedButton({
     super.key,
     this.backgroundColor,
-    this.darkBackgroundColor,
     required this.text,
     this.textColor,
     this.onPressed,
@@ -25,8 +24,7 @@ class CHOutlinedButton extends StatelessWidget {
     this.padding,
     this.backgroundColor = CHColors.black,
     this.textColor = CHColors.white,
-  })  : darkBackgroundColor = CHColors.black,
-        borderColor = null;
+  }) : borderColor = null;
 
   /// Secondary button which background color is the secondary color of the theme
   const CHOutlinedButton.secondary({
@@ -38,8 +36,7 @@ class CHOutlinedButton extends StatelessWidget {
     this.padding,
     this.borderColor = CHColors.black,
     this.textColor = CHColors.black,
-  })  : backgroundColor = CHColors.transparent,
-        darkBackgroundColor = CHColors.grey;
+  }) : backgroundColor = CHColors.transparent;
 
   /// Secondary darck button which background color is the secondary color of the theme
   const CHOutlinedButton.secondaryDark({
@@ -50,7 +47,6 @@ class CHOutlinedButton extends StatelessWidget {
     this.size,
     this.padding,
   })  : backgroundColor = CHColors.transparent,
-        darkBackgroundColor = CHColors.grey,
         borderColor = CHColors.black,
         textColor = CHColors.black;
 
@@ -64,7 +60,6 @@ class CHOutlinedButton extends StatelessWidget {
     this.padding,
     this.textColor = CHColors.black,
   })  : backgroundColor = CHColors.transparent,
-        darkBackgroundColor = CHColors.transparent,
         borderColor = null;
 
   /// Text on the button
@@ -75,9 +70,6 @@ class CHOutlinedButton extends StatelessWidget {
 
   /// Background color of the button
   final Color? backgroundColor;
-
-  /// Background color of the button in dark mode
-  final Color? darkBackgroundColor;
 
   /// Text color of the button
   final Color? textColor;

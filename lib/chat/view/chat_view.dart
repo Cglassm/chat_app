@@ -1,4 +1,5 @@
 import 'package:chat_app/chat/chat.dart';
+import 'package:chat_app/l10n/l10n.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
@@ -10,27 +11,29 @@ class ChatView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final messages = context.select((ChatBloc bloc) => bloc.state.messages);
+    final l10n = context.l10n;
+    final status = context.select((ChatBloc bloc) => bloc.state.status);
 
     return BlocListener<ChatBloc, ChatState>(
       listener: (context, state) {
         if (state.status.isError) {
           ScaffoldMessenger.of(context).showSnackBar(
             CHSnackBar.error(
-              text: 'Error loading messages',
+              text: l10n.errorLoadingMessages,
             ),
           );
         }
         if (state.status.isMessageDeleted) {
           ScaffoldMessenger.of(context).showSnackBar(
             CHSnackBar.success(
-              text: 'Message deleted',
+              text: l10n.messageDeleted,
             ),
           );
         }
       },
       child: Scaffold(
         appBar: CHAppBar.backButton(
-          textTitle: 'Chat App',
+          textTitle: l10n.chatAppTitle,
           onTapBackButton: () {
             Navigator.of(context).pop();
           },
@@ -39,13 +42,15 @@ class ChatView extends StatelessWidget {
               onPressed: () {
                 // TODO(carol): add support mail
               },
-              text: 'support',
+              text: l10n.supportButtonText,
             ),
           ],
         ),
-        body: _ChatBody(
-          messages: messages,
-        ),
+        body: status.isLoadingMessages
+            ? const Center(child: CHCircularProgressIndicator())
+            : _ChatBody(
+                messages: messages,
+              ),
       ),
     );
   }

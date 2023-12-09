@@ -1,4 +1,5 @@
 import 'package:chat_app/chat/chat.dart';
+import 'package:chat_app/l10n/l10n.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -61,7 +62,7 @@ class _AudioIconButton extends StatelessWidget {
         // TODO(future): Implement voice message here
         ScaffoldMessenger.of(context).showSnackBar(
           CHSnackBar.error(
-            text: 'Voice message is not implemented yet but will soon!',
+            text: context.l10n.voiceMessageNotImplemented,
           ),
         );
       },

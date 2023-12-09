@@ -3,6 +3,7 @@ part of 'chat_bloc.dart';
 enum ChatStatus {
   initial,
   loading,
+  loadingMessages,
   loaded,
   error,
   messageSent,
@@ -10,6 +11,7 @@ enum ChatStatus {
 
   bool get isInitial => this == ChatStatus.initial;
   bool get isLoading => this == ChatStatus.loading;
+  bool get isLoadingMessages => this == ChatStatus.loadingMessages;
   bool get isLoaded => this == ChatStatus.loaded;
   bool get isError => this == ChatStatus.error;
   bool get isMessageSent => this == ChatStatus.messageSent;

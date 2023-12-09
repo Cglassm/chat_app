@@ -31,7 +31,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     ChatStarted event,
     Emitter<ChatState> emit,
   ) async {
-    emit(state.copyWith(status: ChatStatus.loading));
+    emit(state.copyWith(status: ChatStatus.loadingMessages));
+    await Future<void>.delayed(const Duration(seconds: 2));
     try {
       final messages = await _chatRepository.readMessages();
       emit(
@@ -78,7 +79,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
 
     newMessages.add(
       ChatMessage(
-        message: 'Recibí tu mensaje',
+        message: 'Message received!',
         dateTime: DateTime.now(),
         isUser: false,
         id: botResponseId,

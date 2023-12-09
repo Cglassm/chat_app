@@ -28,8 +28,6 @@ class OnboardingView extends StatelessWidget {
               children: [
                 CHOutlinedButton.secondary(
                   text: 'Start chatting',
-                  borderColor: theme.colorScheme.primary,
-                  textColor: theme.colorScheme.onBackground,
                   onPressed: () {
                     context.push(ChatPage.path);
                   },
@@ -39,6 +37,7 @@ class OnboardingView extends StatelessWidget {
                     launchURL(kTermsAndConditionsUrl);
                   },
                   text: 'terms & conditions',
+                  textColor: CHColors.black,
                 ),
               ],
             ),
