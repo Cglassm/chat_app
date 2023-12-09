@@ -55,6 +55,10 @@
     "deleteButtonText": "delete",
     "@deleteButtonText": {
       "description": "Text for the delete button."
+    },
+    "typeAMessage": "Type a message...",
+    "@typeAMessage": {
+      "description": "Text for the message input field."
     }
   }
   

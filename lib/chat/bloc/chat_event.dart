@@ -42,3 +42,7 @@ class MessageDeleted extends ChatEvent {
   @override
   List<Object?> get props => [messageId];
 }
+
+class ClearImage extends ChatEvent {
+  const ClearImage();
+}

@@ -35,7 +35,7 @@ class ChatInputBar extends StatelessWidget {
                 Expanded(
                   child: CHTextField(
                     controller: _textEditingController,
-                    hintText: 'Type a message',
+                    hintText: context.l10n.typeAMessage,
                   ),
                 ),
               if (status.isLoading)
