@@ -10,7 +10,6 @@ Future<T?> showDeleteDialog<T>(
   String? deleteButtonText,
   bool barrierDismissible = false,
 }) {
-  final theme = Theme.of(context);
   final l10n = context.l10n;
 
   return showDialog<T>(
@@ -22,17 +21,12 @@ Future<T?> showDeleteDialog<T>(
       hasCloseIcon: false,
       description: description,
       actions: [
-        TextButton(
+        CHUnderlinedButton(
+          text: l10n.cancelButtonText,
+          textColor: CHColors.black,
           onPressed: () {
             Navigator.pop(ctx);
           },
-          child: Text(
-            l10n.cancelButtonText,
-            style: theme.textTheme.headlineSmall!.copyWith(
-              fontWeight: CHFontWeight.semiBold,
-              decoration: TextDecoration.underline,
-            ),
-          ),
         ),
         SizedBox(
           width: CHSpacing.s110,
@@ -50,7 +44,7 @@ Future<T?> showDeleteDialog<T>(
               },
               text: l10n.deleteButtonText,
               textColor: CHColors.white,
-              backgroundColor: CHColors.black,
+              backgroundColor: CHColors.red,
               borderColor: CHColors.black,
             ),
           ),

@@ -18,7 +18,7 @@ class CHTheme {
       colorScheme: _lightColorScheme,
       bottomSheetTheme: _lightBottomSheetTheme,
       listTileTheme: _listTileTheme,
-      progressIndicatorTheme: _progressIndicatorTheme,
+      progressIndicatorTheme: _progressIndicatorLightTheme,
       tabBarTheme: _tabBarTheme,
       bottomNavigationBarTheme: _bottomAppBarTheme,
       chipTheme: _chipTheme,
@@ -41,6 +41,7 @@ class CHTheme {
         bottomSheetTheme: _darkBottomSheetTheme,
         outlinedButtonTheme: _darkOutlinedButtonTheme,
         textButtonTheme: _darkTextButtonTheme,
+        progressIndicatorTheme: _progressIndicatorDarkTheme,
       );
 
   /// Returns the correct color based on the current theme.
@@ -270,10 +271,18 @@ class CHTheme {
 
   /// Returns the correct [ProgressIndicatorThemeData] based on the current
   /// theme.
-  ProgressIndicatorThemeData get _progressIndicatorTheme {
+  ProgressIndicatorThemeData get _progressIndicatorLightTheme {
     return const ProgressIndicatorThemeData(
       color: CHColors.darkViolet,
       circularTrackColor: CHColors.borderOutline,
+    );
+  }
+
+  /// Returns the correct [ProgressIndicatorThemeData] based on dark theme.
+  ProgressIndicatorThemeData get _progressIndicatorDarkTheme {
+    return const ProgressIndicatorThemeData(
+      color: CHColors.lightLilac,
+      circularTrackColor: CHColors.white,
     );
   }
 

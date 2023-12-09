@@ -2,10 +2,16 @@ import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:flutter/material.dart';
 
 class CHUnderlinedButton extends StatelessWidget {
-  const CHUnderlinedButton({required this.text, this.onPressed, super.key});
+  const CHUnderlinedButton({
+    required this.text,
+    this.onPressed,
+    super.key,
+    this.textColor,
+  });
 
   final String text;
   final void Function()? onPressed;
+  final Color? textColor;
 
   @override
   Widget build(BuildContext context) {
@@ -28,9 +34,9 @@ class CHUnderlinedButton extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: theme.textTheme.bodyMedium?.copyWith(
-            color: buttonColor,
+            color: textColor ?? buttonColor,
             decoration: TextDecoration.underline,
-            decorationColor: buttonColor,
+            decorationColor: textColor ?? buttonColor,
           ),
         ),
       ),

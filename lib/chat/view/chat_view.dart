@@ -12,6 +12,7 @@ class ChatView extends StatelessWidget {
   Widget build(BuildContext context) {
     final messages = context.select((ChatBloc bloc) => bloc.state.messages);
     final l10n = context.l10n;
+    final status = context.select((ChatBloc bloc) => bloc.state.status);
 
     return BlocListener<ChatBloc, ChatState>(
       listener: (context, state) {
@@ -31,9 +32,11 @@ class ChatView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: CHAppBar.textAppBar(
-          l10n.chatAppTitle,
-          centerTitle: false,
+        appBar: CHAppBar.backButton(
+          textTitle: l10n.chatAppTitle,
+          onTapBackButton: () {
+            Navigator.of(context).pop();
+          },
           actions: [
             CHUnderlinedButton(
               onPressed: () {
@@ -43,9 +46,11 @@ class ChatView extends StatelessWidget {
             ),
           ],
         ),
-        body: _ChatBody(
-          messages: messages,
-        ),
+        body: status.isLoadingMessages
+            ? const Center(child: CHCircularProgressIndicator())
+            : _ChatBody(
+                messages: messages,
+              ),
       ),
     );
   }
