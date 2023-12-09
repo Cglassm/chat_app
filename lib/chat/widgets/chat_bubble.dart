@@ -1,4 +1,5 @@
 import 'package:chat_app/chat/chat.dart';
+import 'package:chat_app/l10n/l10n.dart';
 import 'package:chat_app/utils/utils.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:chat_repository/chat_repository.dart';
@@ -16,6 +17,7 @@ class ChatBubble extends StatelessWidget {
   Widget build(BuildContext context) {
     final theme = Theme.of(context);
     final isUser = chatMessage.isUser;
+    final l10n = context.l10n;
 
     return GestureDetector(
       onLongPress: () {
@@ -24,8 +26,8 @@ class ChatBubble extends StatelessWidget {
           onTapDelete: () => context
               .read<ChatBloc>()
               .add(MessageDeleted(messageId: chatMessage.id)),
-          title: 'Are you sure you want to delete this message?',
-          description: 'This action cannot be undone.',
+          title: l10n.deleteConfirmationDialogTitle,
+          description: l10n.deleteConfirmationDialogDescription,
         );
       },
       child: Container(
