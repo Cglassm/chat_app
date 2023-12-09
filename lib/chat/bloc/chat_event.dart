@@ -19,8 +19,8 @@ class ChatStarted extends ChatEvent {
   const ChatStarted();
 }
 
-class SendMessage extends ChatEvent {
-  const SendMessage({required this.message});
+class MessageSent extends ChatEvent {
+  const MessageSent({required this.message});
   final String message;
 
   @override
@@ -35,8 +35,8 @@ class PhotoMessageAdded extends ChatEvent {
   List<Object?> get props => [source];
 }
 
-class DeleteMessage extends ChatEvent {
-  const DeleteMessage({required this.messageId});
+class MessageDeleted extends ChatEvent {
+  const MessageDeleted({required this.messageId});
   final String messageId;
 
   @override

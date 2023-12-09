@@ -22,13 +22,13 @@ class SendMessageIconButton extends StatelessWidget {
       onPressed: () {
         if (_textEditingController.text.isNotEmpty) {
           context.read<ChatBloc>().add(
-                SendMessage(message: _textEditingController.text),
+                MessageSent(message: _textEditingController.text),
               );
           _textEditingController.clear();
         }
         if (image != null) {
           context.read<ChatBloc>().add(
-                const SendMessage(message: ''),
+                const MessageSent(message: ''),
               );
         }
       },

@@ -78,4 +78,18 @@ abstract class CHColors {
 
   /// Success
   static const Color success = Color(0xFF58D98D);
+
+  /// The blue for the gradient
+  static const Color blueGradient = Color(0XFFCEE8FA);
+
+  /// lilac and blue gradient
+  static LinearGradient lilacVioletGradient = const LinearGradient(
+    begin: Alignment.center,
+    end: Alignment.bottomCenter,
+    colors: [
+      CHColors.lilac,
+      CHColors.richViolet,
+    ],
+    stops: [0.0, 0.8],
+  );
 }

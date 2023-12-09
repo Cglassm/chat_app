@@ -38,9 +38,8 @@ class ChatView extends StatelessWidget {
             CHUnderlinedButton(
               onPressed: () {
                 // TODO(carol): add support mail
-                launchURL(kTermsAndConditionsUrl);
               },
-              text: 'terms & conditions',
+              text: 'support',
             ),
           ],
         ),

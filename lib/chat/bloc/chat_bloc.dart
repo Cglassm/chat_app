@@ -19,9 +19,9 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
         _chatRepository = chatRepository,
         super(ChatState.initial()) {
     on<ChatStarted>(_onChatStarted);
-    on<SendMessage>(_onSendMessage);
+    on<MessageSent>(_onMessageSent);
     on<PhotoMessageAdded>(_onPhotoMessageAdded);
-    on<DeleteMessage>(_onDeleteMessage);
+    on<MessageDeleted>(_onMessageDeleted);
   }
 
   final MediaPicker _mediaPicker;
@@ -45,8 +45,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     }
   }
 
-  Future<void> _onSendMessage(
-    SendMessage event,
+  Future<void> _onMessageSent(
+    MessageSent event,
     Emitter<ChatState> emit,
   ) async {
     emit(state.copyWith(status: ChatStatus.loading));
@@ -116,8 +116,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     }
   }
 
-  Future<void> _onDeleteMessage(
-    DeleteMessage event,
+  Future<void> _onMessageDeleted(
+    MessageDeleted event,
     Emitter<ChatState> emit,
   ) async {
     try {
