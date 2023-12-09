@@ -18,32 +18,37 @@ class ChatInputBar extends StatelessWidget {
     final status = context.select(
       (ChatBloc bloc) => bloc.state.status,
     );
-    return Container(
-      padding: const EdgeInsets.all(CHSpacing.md),
-      child: Row(
-        children: [
-          const _ImageIconButton(),
-          const _AudioIconButton(),
-          if (stateImage != null && !status.isMessageSent)
-            Expanded(
-              child: ChatImageField(image: stateImage),
-            )
-          else
-            Expanded(
-              child: CHTextField(
-                controller: _textEditingController,
-                hintText: 'Type a message',
-              ),
-            ),
-          if (status.isLoading)
-            const CHCircularProgressIndicator()
-          else
-            SendMessageIconButton(
-              textEditingController: _textEditingController,
-              image: stateImage,
-            ),
-        ],
-      ),
+    return Column(
+      children: [
+        QuickMessageChipsList(),
+        Container(
+          padding: const EdgeInsets.all(CHSpacing.md),
+          child: Row(
+            children: [
+              const _ImageIconButton(),
+              const _AudioIconButton(),
+              if (stateImage != null && !status.isMessageSent)
+                Expanded(
+                  child: ChatImageField(image: stateImage),
+                )
+              else
+                Expanded(
+                  child: CHTextField(
+                    controller: _textEditingController,
+                    hintText: 'Type a message',
+                  ),
+                ),
+              if (status.isLoading)
+                const CHCircularProgressIndicator()
+              else
+                SendMessageIconButton(
+                  textEditingController: _textEditingController,
+                  image: stateImage,
+                ),
+            ],
+          ),
+        ),
+      ],
     );
   }
 }

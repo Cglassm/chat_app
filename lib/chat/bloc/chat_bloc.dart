@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chat_app/utils/utils.dart';
 import 'package:chat_repository/chat_repository.dart';
 
 import 'package:equatable/equatable.dart';
@@ -77,9 +78,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       );
     }
 
+    final botResponse = getBotResponse(event.message);
     newMessages.add(
       ChatMessage(
-        message: 'Message received!',
+        message: botResponse,
         dateTime: DateTime.now(),
         isUser: false,
         id: botResponseId,
