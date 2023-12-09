@@ -48,7 +48,7 @@ Future<T?> showDeleteDialog<T>(
               },
               text: 'Delete',
               textColor: CHColors.white,
-              backgroundColor: CHColors.black,
+              backgroundColor: CHColors.red,
               borderColor: CHColors.black,
             ),
           ),

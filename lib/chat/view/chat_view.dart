@@ -29,9 +29,11 @@ class ChatView extends StatelessWidget {
         }
       },
       child: Scaffold(
-        appBar: CHAppBar.textAppBar(
-          'Chat App',
-          centerTitle: false,
+        appBar: CHAppBar.backButton(
+          textTitle: 'Chat App',
+          onTapBackButton: () {
+            Navigator.of(context).pop();
+          },
           actions: [
             CHUnderlinedButton(
               onPressed: () {
