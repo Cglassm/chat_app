@@ -31,7 +31,7 @@ class CHDialog extends StatelessWidget {
 
     return AlertDialog(
       actionsPadding: const EdgeInsets.only(
-        bottom: CHSpacing.s40,
+        bottom: CHSpacing.xxlg,
       ),
       backgroundColor: backgroundColor ?? CHColors.veryLightLilac,
       shape: RoundedRectangleBorder(

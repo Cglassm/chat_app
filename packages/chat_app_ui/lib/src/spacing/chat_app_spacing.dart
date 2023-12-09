@@ -11,6 +11,9 @@ abstract class CHSpacing {
   /// xs spacing value (4pt)
   static const double xs = 0.25 * spaceUnit;
 
+  /// s spacing value (6pt)
+  static const double s = 0.375 * spaceUnit;
+
   /// sm spacing value (8pt)
   static const double sm = 0.5 * spaceUnit;
 
@@ -41,8 +44,11 @@ abstract class CHSpacing {
   /// s20
   static const double s20 = 20;
 
+  /// s22
+  static const double s22 = 22;
+
   /// s40
-  static const double s40 = 40;
+  static const double s44 = 44;
 
   /// s52
   static const double s52 = 52;
