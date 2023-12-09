@@ -10,7 +10,6 @@ Future<T?> showDeleteDialog<T>(
   String? deleteButtonText,
   bool barrierDismissible = false,
 }) {
-  final theme = Theme.of(context);
   final l10n = context.l10n;
 
   return showDialog<T>(
