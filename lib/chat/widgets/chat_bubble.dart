@@ -23,7 +23,7 @@ class ChatBubble extends StatelessWidget {
           context,
           onTapDelete: () => context
               .read<ChatBloc>()
-              .add(DeleteMessage(messageId: chatMessage.id)),
+              .add(MessageDeleted(messageId: chatMessage.id)),
           title: 'Are you sure you want to delete this message?',
           description: 'This action cannot be undone.',
         );
