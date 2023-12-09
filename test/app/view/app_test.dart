@@ -1,6 +1,5 @@
 import 'package:chat_app/app/app.dart';
 import 'package:chat_app/app/router/router.dart';
-import 'package:chat_app/chat/chat.dart';
 import 'package:chat_app/onboarding/view/onboarding_page.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter_test/flutter_test.dart';
