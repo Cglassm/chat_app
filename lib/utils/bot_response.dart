@@ -1,3 +1,4 @@
+/// This function returns a bot response based on the message sent by the user.
 String getBotResponse(String message) {
   switch (message) {
     case 'Hello':
