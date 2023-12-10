@@ -23,6 +23,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<MessageSent>(_onMessageSent);
     on<PhotoMessageAdded>(_onPhotoMessageAdded);
     on<MessageDeleted>(_onMessageDeleted);
+    on<ClearImage>(_onClearImage);
   }
 
   final MediaPicker _mediaPicker;
@@ -136,5 +137,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     } catch (_) {
       emit(state.copyWith(status: ChatStatus.error));
     }
+  }
+
+  Future<void> _onClearImage(
+    ClearImage event,
+    Emitter<ChatState> emit,
+  ) async {
+    emit(state.copyWith(resetImage: state.image != null));
   }
 }
