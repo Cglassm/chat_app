@@ -1,5 +1,6 @@
 import 'package:chat_app/chat/chat.dart';
 import 'package:chat_app/l10n/l10n.dart';
+import 'package:chat_app/utils/utils.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:chat_repository/chat_repository.dart';
 import 'package:flutter/material.dart';
@@ -39,8 +40,8 @@ class ChatView extends StatelessWidget {
           },
           actions: [
             CHUnderlinedButton(
-              onPressed: () {
-                // TODO(carol): add support mail
+              onPressed: () async {
+                await launchEmail(context);
               },
               text: l10n.supportButtonText,
             ),
