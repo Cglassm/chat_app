@@ -7,6 +7,8 @@ import 'package:media_picker/media_picker.dart';
 class ChatPage extends StatelessWidget {
   const ChatPage({super.key});
 
+  static const path = '/chat';
+
   @override
   Widget build(BuildContext context) {
     return BlocProvider(

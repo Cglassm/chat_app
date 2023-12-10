@@ -31,7 +31,7 @@ class CHDialog extends StatelessWidget {
 
     return AlertDialog(
       actionsPadding: const EdgeInsets.only(
-        bottom: CHSpacing.s40,
+        bottom: CHSpacing.xxlg,
       ),
       backgroundColor: backgroundColor ?? CHColors.veryLightLilac,
       shape: RoundedRectangleBorder(
@@ -76,7 +76,7 @@ class CHDialog extends StatelessWidget {
             ],
             Text(
               title,
-              style: textTheme.displaySmall,
+              style: textTheme.displaySmall?.copyWith(color: CHColors.black),
             ),
             const SizedBox(height: CHSpacing.lg),
             if (description != null) ...[
@@ -84,6 +84,7 @@ class CHDialog extends StatelessWidget {
                 description!,
                 style: textTheme.bodyLarge?.copyWith(
                   fontSize: descriptionFontSize ?? CHSpacing.lg,
+                  color: CHColors.black,
                 ),
               ),
               const SizedBox(height: CHSpacing.xlg),

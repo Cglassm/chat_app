@@ -1,5 +1,6 @@
 import 'dart:async';
 
+import 'package:chat_app/utils/utils.dart';
 import 'package:chat_repository/chat_repository.dart';
 
 import 'package:equatable/equatable.dart';
@@ -22,6 +23,7 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     on<MessageSent>(_onMessageSent);
     on<PhotoMessageAdded>(_onPhotoMessageAdded);
     on<MessageDeleted>(_onMessageDeleted);
+    on<ClearImage>(_onClearImage);
   }
 
   final MediaPicker _mediaPicker;
@@ -31,7 +33,8 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     ChatStarted event,
     Emitter<ChatState> emit,
   ) async {
-    emit(state.copyWith(status: ChatStatus.loading));
+    emit(state.copyWith(status: ChatStatus.loadingMessages));
+    await Future<void>.delayed(const Duration(seconds: 2));
     try {
       final messages = await _chatRepository.readMessages();
       emit(
@@ -76,9 +79,10 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
       );
     }
 
+    final botResponse = getBotResponse(event.message);
     newMessages.add(
       ChatMessage(
-        message: 'Message received!',
+        message: botResponse,
         dateTime: DateTime.now(),
         isUser: false,
         id: botResponseId,
@@ -133,5 +137,12 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     } catch (_) {
       emit(state.copyWith(status: ChatStatus.error));
     }
+  }
+
+  Future<void> _onClearImage(
+    ClearImage event,
+    Emitter<ChatState> emit,
+  ) async {
+    emit(state.copyWith(resetImage: state.image != null));
   }
 }

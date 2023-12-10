@@ -59,6 +59,10 @@
     "emailSubject": "Chat App Support",
     "@emailSubject": {
       "description": "Subject for the email."
+    },
+    "typeAMessage": "Type a message...",
+    "@typeAMessage": {
+      "description": "Text for the message input field."
     }
   }
   
