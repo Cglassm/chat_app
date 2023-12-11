@@ -8,11 +8,11 @@ This chat application, created using Flutter, features a modular design based on
 
 1. **`App`**: Serves as the app's entry point. Sets up [RepositoryProviders](https://pub.dev/documentation/flutter_bloc/latest/flutter_bloc/RepositoryProvider-class.html) and the [Application Theme](https://api.flutter.dev/flutter/material/ThemeData-class.html), adapting to the user's device settings. Includes the `AppView` widget, which forms the MaterialApp and determines the displayed content.
    1. **`AppThemeBloc`**: Manages theme transitions (light/dark) within the app, using events for theme changes and maintaining the current state.
-   2. **`AppRouter`**: Manages navigation routes using `[go_router](https://pub.dev/packages/go_router)`.
+   2. **`AppRouter`**: Manages navigation routes using [go_router](https://pub.dev/packages/go_router).
 2. **`ChatBloc`**: Core of the app's logic, handling chat states like message sending/receiving, photo selection, and message deletion. Interfaces with `ChatRepository` for local storage operations.
    1. Automated responses are also managed here.
-   2. Utilizes the `[uuid](https://pub.dev/packages/uuid)` package to create unique message IDs, enabling specific message functions and deletion.
-3. **`ChatRepository`**: Abstracts storage operations (save, read, delete messages) using `[path_provider](https://pub.dev/packages/path_provider)` for local storage.
+   2. Utilizes the [uuid](https://pub.dev/packages/uuid) package to create unique message IDs, enabling specific message functions and deletion.
+3. **`ChatRepository`**: Abstracts storage operations (save, read, delete messages) using [path_provider](https://pub.dev/packages/path_provider) for local storage.
 4. **`ChatPage` and `ChatView`**: UI components presenting the chat interface. `ChatPage` supplies a `ChatBloc` to `ChatView`, which displays messages and input bar.
 5. The `utils` folder contains useful methods for app-wide use.
 
@@ -32,7 +32,26 @@ This chat application, created using Flutter, features a modular design based on
 
 1. Clone the project:
    ```jsx
-   git clone https://github.com/Cglassm/chat_app.git
+   cd packages/chat_app_ui
+   ```
+   ```jsx
+   fvm flutter pub get
+   ```
+   ```jsx
+   cd gallery/
+   ```
+   ```jsx
+   fvm flutter pub get
+   ```
+   ```jsx
+   cd ..
+   cd ..
+   ```
+   ```jsx
+   cd chat_repository/
+   ```
+   ```jsx
+   fvm flutter pub get
    ```
 2. Open in Visual Studio Code.
 3. Resolve dependencies using `fvm flutter pub get` (or `flutter pub get` if fvm is not installed).
