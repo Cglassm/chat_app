@@ -1,5 +1,6 @@
 import 'package:chat_app/app/app.dart';
 import 'package:chat_app/chat/chat.dart';
+import 'package:chat_app/l10n/l10n.dart';
 import 'package:chat_app/utils/utils.dart';
 import 'package:chat_app_ui/chat_app_ui.dart';
 import 'package:flutter/material.dart';
@@ -10,6 +11,7 @@ class OnboardingView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final l10n = context.l10n;
     return Scaffold(
       body: Stack(
         children: [
@@ -25,7 +27,7 @@ class OnboardingView extends StatelessWidget {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 CHOutlinedButton.secondary(
-                  text: 'Start chatting',
+                  text: l10n.startChatting,
                   onPressed: () {
                     context.push(ChatPage.path);
                   },
@@ -34,7 +36,7 @@ class OnboardingView extends StatelessWidget {
                   onPressed: () {
                     launchURL(kTermsAndConditionsUrl);
                   },
-                  text: 'terms & conditions',
+                  text: l10n.termsAndConditions,
                   textColor: CHColors.black,
                 ),
               ],
