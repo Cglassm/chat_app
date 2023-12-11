@@ -44,6 +44,10 @@ class ChatView extends StatelessWidget {
                 await launchEmail(context);
               },
               text: l10n.supportButtonText,
+              textScaleFactor: getTextScaleFactor(
+                context: context,
+                dataTextFactorLimit: 1.3,
+              ),
             ),
           ],
         ),
