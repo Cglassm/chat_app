@@ -32,6 +32,12 @@ This chat application, created using Flutter, features a modular design based on
 
 1. Clone the project:
    ```jsx
+   git clone https://github.com/Cglassm/chat_app.git
+   ```
+2. Open in Visual Studio Code.
+3. Resolve dependencies using `fvm flutter pub get` (or `flutter pub get` if fvm is not installed).
+4. Navigate through the project directories to resolve any folder-specific dependencies.
+   ```jsx
    cd packages/chat_app_ui
    ```
    ```jsx
@@ -53,17 +59,15 @@ This chat application, created using Flutter, features a modular design based on
    ```jsx
    fvm flutter pub get
    ```
-2. Open in Visual Studio Code.
-3. Resolve dependencies using `fvm flutter pub get` (or `flutter pub get` if fvm is not installed).
-4. Navigate through the project directories to resolve any folder-specific dependencies.
 5. Use the “Run and Debug” feature in VSCode to start the app.
+6. Pressing on the green triangle at the top and run the app by choosing “Launch development” or “Launch production,” selecting your connected device.
 
 ## Development Assumptions
 
-- English communication.
-- Snackbar notifications for reporting.
-- Familiarity with standard chat app interfaces.
-- Modular code design for scalability.
+- Users will communicate in English.
+- Snackbar notifications are sufficient for error and success reporting.
+- The modular code structure, including Bloc usage, indicates a design aimed at scalability and maintenance.
+- Users are familiar with chat app UIs (like [WhatsApp](https://www.whatsapp.com/?lang=es_LA)) and can navigate various app functionalities like sending images, typing long texts, and deleting a message with a long press.
 
 ## List of Known Bugs
 
