@@ -7,11 +7,13 @@ class CHUnderlinedButton extends StatelessWidget {
     this.onPressed,
     super.key,
     this.textColor,
+    this.textScaleFactor,
   });
 
   final String text;
   final void Function()? onPressed;
   final Color? textColor;
+  final double? textScaleFactor;
 
   @override
   Widget build(BuildContext context) {
@@ -38,6 +40,7 @@ class CHUnderlinedButton extends StatelessWidget {
             decoration: TextDecoration.underline,
             decorationColor: textColor ?? buttonColor,
           ),
+          textScaleFactor: textScaleFactor,
         ),
       ),
     );
