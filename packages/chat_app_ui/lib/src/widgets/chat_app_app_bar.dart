@@ -69,7 +69,7 @@ class CHAppBar extends AppBar {
                   children: [
                     Text(
                       textTitle,
-                      style: CHTextStyle.displaySmall,
+                      style: CHTextStyle.displayMedium,
                       textAlign: TextAlign.left,
                     ),
                   ],

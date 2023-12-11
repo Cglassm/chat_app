@@ -119,7 +119,11 @@ class _ChatBodyState extends State<_ChatBody> {
             ),
           )
         else
-          const EmptyChatBody(),
+          const SizedBox(
+            height: CHSpacing.s150,
+            width: CHSpacing.s150,
+            child: EmptyChatBody(),
+          ),
         ChatInputBar(),
       ],
     );

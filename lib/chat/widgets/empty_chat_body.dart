@@ -9,7 +9,7 @@ class EmptyChatBody extends StatelessWidget {
     return Center(
       child: Text(
         context.l10n.noMessagesText,
-        style: Theme.of(context).textTheme.bodyMedium,
+        style: Theme.of(context).textTheme.headlineMedium,
         textAlign: TextAlign.center,
       ),
     );
