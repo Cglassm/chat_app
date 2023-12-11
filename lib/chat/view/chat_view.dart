@@ -99,31 +99,30 @@ class _ChatBodyState extends State<_ChatBody> {
     return Column(
       mainAxisAlignment: MainAxisAlignment.spaceBetween,
       children: [
-        if (widget.messages.isNotEmpty)
-          Expanded(
-            child: ColoredBox(
-              color: Theme.of(context).colorScheme.surfaceVariant,
-              child: ListView.builder(
-                controller: scrollController,
-                itemCount: widget.messages.length,
-                itemBuilder: (context, index) {
-                  final chatMessage = widget.messages[index];
-                  return Align(
-                    alignment: chatMessage.isUser
-                        ? Alignment.centerRight
-                        : Alignment.centerLeft,
-                    child: ChatBubble(chatMessage: chatMessage),
-                  );
-                },
-              ),
-            ),
-          )
-        else
-          const SizedBox(
-            height: CHSpacing.s150,
-            width: CHSpacing.s150,
-            child: EmptyChatBody(),
-          ),
+        Expanded(
+          child: widget.messages.isEmpty
+              ? const SizedBox(
+                  height: CHSpacing.s150,
+                  width: CHSpacing.s150,
+                  child: EmptyChatBody(),
+                )
+              : ColoredBox(
+                  color: Theme.of(context).colorScheme.surfaceVariant,
+                  child: ListView.builder(
+                    controller: scrollController,
+                    itemCount: widget.messages.length,
+                    itemBuilder: (context, index) {
+                      final chatMessage = widget.messages[index];
+                      return Align(
+                        alignment: chatMessage.isUser
+                            ? Alignment.centerRight
+                            : Alignment.centerLeft,
+                        child: ChatBubble(chatMessage: chatMessage),
+                      );
+                    },
+                  ),
+                ),
+        ),
         ChatInputBar(),
       ],
     );

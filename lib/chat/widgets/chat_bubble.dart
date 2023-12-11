@@ -59,34 +59,9 @@ class ChatBubble extends StatelessWidget {
                   dataTextFactorLimit: 2,
                 ),
               ),
-            _MessageDateTime(chatMessage: chatMessage, theme: theme),
+            MessageDateTime(chatMessage: chatMessage, theme: theme),
           ],
         ),
-      ),
-    );
-  }
-}
-
-class _MessageDateTime extends StatelessWidget {
-  const _MessageDateTime({
-    required this.chatMessage,
-    required this.theme,
-  });
-
-  final ChatMessage chatMessage;
-  final ThemeData theme;
-
-  @override
-  Widget build(BuildContext context) {
-    return Text(
-      getFormattedDate(
-        chatMessage.dateTime,
-      ),
-      style: theme.textTheme.bodySmall
-          ?.copyWith(color: theme.colorScheme.background),
-      textScaleFactor: getTextScaleFactor(
-        context: context,
-        dataTextFactorLimit: 2,
       ),
     );
   }
