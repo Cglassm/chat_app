@@ -19,14 +19,25 @@ This chat application, created using Flutter, features a modular design based on
 ### Key Features
 
 - **Theme Management**: Toggles light and dark modes using `AppThemeBloc`, aligning with the device's theme setting.
+  To test this feature:
+      1. Go to device settings.
+      2. Change the theme.
+      3. Return to the app and restart it.
 - **Chat Flow**: Supports message sending/viewing, image handling, and error management.
-  - **Customized Bot Responses**: Adaptive bot responses based on user input.
-  - **Quick Messages**: Predefined messages for efficient communication.
+  - **Customized Bot Responses**: An adaptive bot response system based on the user's message content. For example, if a user sends "Hello," the bot responds with "Hello, how can I help?".
+  - **Quick Messages**: Users can quickly send predefined messages via a scrollable horizontal chip list, enhancing communication efficiency.
+  - **Default bot response**: The default bot response is "Message received!" but functionality allows varying responses based on message context or adding new potential responses.
   - **Image Sending**: Supports camera and gallery images, with cropping functionality.
-  - **Upcoming Audio Messages**: Placeholder for future audio messaging.
+     - Uses **`MediaPicker`** for selecting and cropping images, integrated with `CropperService` and `ImagePicker`.
+       - Camera access functionality is testable only on an Android simulator or physical Android device, as the Xcode simulator does not support camera functionality.
+       - The same applies to email access from the **`Support`** button.
+     - Option to crop the selected image using **`CropperService`** with the [image_cropper](https://pub.dev/packages/image_cropper) package.
+     - **`ImagePicker`** allows users to select images from their gallery or take photos with the device camera.
+     - Users can cancel sending an image by pressing the “X” button.
+  - **Upcoming Audio Messages**: Placeholder in the input bar for future audio messaging. Pressing on that icon informs users that this feature is upcoming.
   - **Individual Message Deletion**: Enabled via long tap.
-- **Data Persistence**: Local message storage using `ChatRepository`.
-- **Reusable UI Components**: The `ui_package` folder contains customizable UI components.
+- **Data Persistence**: Local message storage using `ChatRepository` with the `path_provider` package.
+- **Reusable UI Components**: The `ui_package` folder contains customizable UI components used across the app, with plans for future common components.
 
 ## Instructions for Building and Running the App Locally
 
@@ -75,7 +86,7 @@ Currently, no bugs reported. Contact [carglassm@gmail.com](mailto:carglassm@gmai
 
 ## Suggestions for Potential Features
 
-- Date-wise conversation history.
+- Saving conversations in a date-wise history to avoid scrolling to the top to find older messages.
 - Bulk message deletion.
 - Message search feature.
 - Favorite messages marking.
