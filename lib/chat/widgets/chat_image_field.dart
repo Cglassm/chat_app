@@ -21,7 +21,7 @@ class ChatImageField extends StatelessWidget {
         children: [
           ImageContainer(image: image, color: CHColors.brightGrey),
           IconButton(
-            icon: const Icon(Icons.close),
+            icon: const Icon(Icons.close, color: CHColors.black),
             onPressed: () {
               context.read<ChatBloc>().add(const ClearImage());
             },

@@ -9,7 +9,7 @@ extension ThemeX on ThemeData {
     if (isDarkMode) {
       return CHIconsDark();
     } else {
-      return  CHIconsLight();
+      return CHIconsLight();
     }
   }
 }

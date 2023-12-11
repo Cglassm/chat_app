@@ -17,7 +17,11 @@ Future<T?> showDeleteDialog<T>(
     barrierDismissible: barrierDismissible,
     builder: (ctx) => CHDialog(
       title: title,
-      icon: const Icon(Icons.delete_rounded, color: CHColors.black),
+      icon: const Icon(
+        Icons.delete_forever,
+        color: CHColors.black,
+        size: CHSpacing.s44,
+      ),
       hasCloseIcon: false,
       description: description,
       actions: [

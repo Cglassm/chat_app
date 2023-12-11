@@ -23,11 +23,8 @@ class QuickMessageChipsList extends StatelessWidget {
       height: CHSpacing.s44,
       child: ListView.separated(
         scrollDirection: Axis.horizontal,
-        separatorBuilder: (context, index) {
-          return const SizedBox(
-            width: CHSpacing.s,
-          );
-        },
+        separatorBuilder: (context, index) =>
+            const SizedBox(width: CHSpacing.s),
         itemCount: quickMessages.length,
         itemBuilder: (_, int index) {
           final message = quickMessages[index];

@@ -53,51 +53,47 @@ class ChatBloc extends Bloc<ChatEvent, ChatState> {
     Emitter<ChatState> emit,
   ) async {
     emit(state.copyWith(status: ChatStatus.loading));
-    await Future<void>.delayed(const Duration(seconds: 3));
-    final newMessages = List<ChatMessage>.from(state.messages);
-    final userMessageId = const Uuid().v4();
-    final botResponseId = const Uuid().v4();
+    await Future<void>.delayed(const Duration(seconds: 2));
 
-    if (state.image != null) {
-      newMessages.add(
-        ChatMessage(
-          message: '',
-          image: state.image,
-          dateTime: DateTime.now(),
-          isUser: true,
-          id: userMessageId,
-        ),
-      );
-    } else {
-      newMessages.add(
-        ChatMessage(
-          message: event.message,
-          dateTime: DateTime.now(),
-          isUser: true,
-          id: userMessageId,
-        ),
-      );
-    }
+    final newMessages = List<ChatMessage>.from(state.messages);
+    const uuid = Uuid();
+    final userMessageId = uuid.v4();
+    final botResponseId = uuid.v4();
+    final currentTime = DateTime.now();
+
+    newMessages.add(
+      ChatMessage(
+        message: state.image != null ? '' : event.message,
+        image: state.image,
+        dateTime: currentTime,
+        isUser: true,
+        id: userMessageId,
+      ),
+    );
 
     final botResponse = getBotResponse(event.message);
     newMessages.add(
       ChatMessage(
         message: botResponse,
-        dateTime: DateTime.now(),
+        dateTime: currentTime,
         isUser: false,
         id: botResponseId,
       ),
     );
 
-    await _chatRepository.saveMessages(newMessages);
+    try {
+      await _chatRepository.saveMessages(newMessages);
 
-    emit(
-      state.copyWith(
-        status: ChatStatus.messageSent,
-        messages: newMessages,
-        resetImage: state.image != null,
-      ),
-    );
+      emit(
+        state.copyWith(
+          status: ChatStatus.messageSent,
+          messages: newMessages,
+          resetImage: state.image != null,
+        ),
+      );
+    } catch (e) {
+      emit(state.copyWith(status: ChatStatus.error));
+    }
   }
 
   Future<void> _onPhotoMessageAdded(

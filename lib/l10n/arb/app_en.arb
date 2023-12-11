@@ -63,6 +63,14 @@
     "typeAMessage": "Type a message...",
     "@typeAMessage": {
       "description": "Text for the message input field."
+    },
+    "startChatting": "Start Chatting",
+    "@startChatting": {
+      "description": "Text for the start chatting button."
+    },
+    "termsAndConditions": "Terms & conditions",
+    "@termsAndConditions": {
+      "description": "Text for the terms and conditions link."
     }
   }
   

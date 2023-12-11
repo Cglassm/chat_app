@@ -152,7 +152,7 @@ class _ColorTextContainer extends StatelessWidget {
         horizontal: CHSpacing.lg * 2,
         vertical: CHSpacing.xs,
       ),
-      width: CHSpacing.spaceUnit*100,
+      width: CHSpacing.spaceUnit * 100,
       height: CHSpacing.xxlg,
       decoration: BoxDecoration(
         color: color,
